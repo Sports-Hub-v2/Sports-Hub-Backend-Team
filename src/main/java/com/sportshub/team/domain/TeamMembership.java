@@ -19,7 +19,7 @@ public class TeamMembership {
     @Column(name = "role_in_team", nullable = false)
     private String roleInTeam;
 
-    @Column(name = "joined_at", insertable = false, updatable = false)
+    @Column(name = "joined_at")
     private LocalDateTime joinedAt;
 
     @Column(name = "is_active", nullable = false)

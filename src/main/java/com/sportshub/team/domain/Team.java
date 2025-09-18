@@ -45,7 +45,7 @@ public class Team {
     @Column(name = "home_ground")
     private String homeGround;
 
-    @Column(name = "created_at", insertable = false, updatable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "rival_teams")
