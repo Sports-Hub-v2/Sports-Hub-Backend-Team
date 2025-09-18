@@ -17,6 +17,10 @@ public class TeamDtos {
         private String logoUrl;
         private String homeGround;
         private String rivalTeams;
+        private Integer maxMembers;
+        private String ageGroup;
+        private String skillLevel;
+        private String activityType;
     }
 
     @Data
@@ -25,6 +29,13 @@ public class TeamDtos {
         private Long captainProfileId;
         private String region;
         private String rivalTeams;
+        private String description;
+        private Integer maxMembers;
+        private String ageGroup;
+        private String skillLevel;
+        private String activityType;
+        private String logoUrl;
+        private String homeGround;
     }
 }
 

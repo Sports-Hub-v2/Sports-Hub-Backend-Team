@@ -24,6 +24,26 @@ public class Team {
     private Long captainProfileId;
 
     private String region;
+    
+    private String description;
+    
+    @Column(name = "max_members")
+    private Integer maxMembers;
+    
+    @Column(name = "age_group")
+    private String ageGroup;
+    
+    @Column(name = "skill_level")
+    private String skillLevel;
+    
+    @Column(name = "activity_type")
+    private String activityType;
+    
+    @Column(name = "logo_url")
+    private String logoUrl;
+    
+    @Column(name = "home_ground")
+    private String homeGround;
 
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;

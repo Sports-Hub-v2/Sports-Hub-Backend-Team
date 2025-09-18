@@ -38,6 +38,13 @@ public class TeamService {
         if (patch.getRegion() != null) t.setRegion(patch.getRegion());
         if (patch.getCaptainProfileId() != null) t.setCaptainProfileId(patch.getCaptainProfileId());
         if (patch.getRivalTeams() != null) t.setRivalTeams(patch.getRivalTeams());
+        if (patch.getDescription() != null) t.setDescription(patch.getDescription());
+        if (patch.getMaxMembers() != null) t.setMaxMembers(patch.getMaxMembers());
+        if (patch.getAgeGroup() != null) t.setAgeGroup(patch.getAgeGroup());
+        if (patch.getSkillLevel() != null) t.setSkillLevel(patch.getSkillLevel());
+        if (patch.getActivityType() != null) t.setActivityType(patch.getActivityType());
+        if (patch.getLogoUrl() != null) t.setLogoUrl(patch.getLogoUrl());
+        if (patch.getHomeGround() != null) t.setHomeGround(patch.getHomeGround());
         try {
             return teamRepository.save(t);
         } catch (DataIntegrityViolationException e) {
