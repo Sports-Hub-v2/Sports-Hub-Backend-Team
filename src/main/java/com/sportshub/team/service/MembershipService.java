@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,10 +24,15 @@ public class MembershipService {
             TeamMembership x = new TeamMembership();
             x.setId(id);
             x.setIsActive(true);
+            x.setJoinedAt(LocalDateTime.now());
             return x;
         });
         m.setRoleInTeam(role);
         m.setIsActive(true);
+        // Set joinedAt if it's null (for existing inactive members rejoining)
+        if (m.getJoinedAt() == null) {
+            m.setJoinedAt(LocalDateTime.now());
+        }
         return membershipRepository.save(m);
     }
 

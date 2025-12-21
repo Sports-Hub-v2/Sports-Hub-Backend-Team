@@ -27,7 +27,26 @@ public class TeamService {
     @Transactional
     public Team create(Team t) {
         try {
-            return teamRepository.save(t);
+            // 팀 저장
+            Team savedTeam = teamRepository.save(t);
+
+            // 팀 생성자를 자동으로 CAPTAIN으로 멤버십에 추가
+            if (savedTeam.getCaptainProfileId() != null) {
+                TeamMembershipId membershipId = new TeamMembershipId(savedTeam.getId(), savedTeam.getCaptainProfileId());
+
+                // 이미 존재하는지 확인
+                if (!membershipRepository.existsById(membershipId)) {
+                    TeamMembership membership = new TeamMembership();
+                    membership.setId(membershipId);
+                    membership.setRoleInTeam("CAPTAIN");
+                    membership.setIsActive(true);
+                    membership.setJoinedAt(LocalDateTime.now());
+                    membershipRepository.save(membership);
+                    log.info("팀 생성 완료 및 팀장 멤버십 추가: 팀 ID={}, 프로필 ID={}", savedTeam.getId(), savedTeam.getCaptainProfileId());
+                }
+            }
+
+            return savedTeam;
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "duplicate team name");
         }
